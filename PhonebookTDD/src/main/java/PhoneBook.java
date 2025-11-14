@@ -25,6 +25,6 @@ public class PhoneBook {
     }
     
     public String findByName(String name) {
-        return null; // Заглушка
+        return nameToNumber.get(name);
     }
 }
