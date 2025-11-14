@@ -1,3 +1,5 @@
 public class PhoneBook {
-    // Пустой класс
+    public int add(String name, String number) {
+        return 0; // Заглушка
+    }
 }
