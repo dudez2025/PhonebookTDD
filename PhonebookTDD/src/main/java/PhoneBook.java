@@ -31,6 +31,6 @@ public class PhoneBook {
     }
     
     public Set<String> printAllNames() {
-        return new TreeSet<>(); // Заглушка
+        return new TreeSet<>(nameToNumber.keySet());
     }
 }
