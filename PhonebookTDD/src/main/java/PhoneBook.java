@@ -16,4 +16,8 @@ public class PhoneBook {
         nameToNumber.put(name, number);
         return nameToNumber.size();
     }
+    
+    public String findByNumber(String number) {
+        return null; // Заглушка
+    }
 }
