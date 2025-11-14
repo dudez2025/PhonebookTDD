@@ -1,8 +1,9 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.Set;
 
 public class PhoneBookTest {
-    // Существующие тесты для add и findByNumber...
+    // Существующие тесты...
     @Test
     public void testAddFirstContact() {
         PhoneBook phoneBook = new PhoneBook();
@@ -49,7 +50,6 @@ public class PhoneBookTest {
         assertNull(result);
     }
     
-    // Новые тесты для findByName
     @Test
     public void testFindByNameExisting() {
         PhoneBook phoneBook = new PhoneBook();
@@ -71,5 +71,48 @@ public class PhoneBookTest {
         PhoneBook phoneBook = new PhoneBook();
         String result = phoneBook.findByName("Alice");
         assertNull(result);
+    }
+    
+    // Новые тесты для printAllNames
+    @Test
+    public void testPrintAllNamesEmpty() {
+        PhoneBook phoneBook = new PhoneBook();
+        Set<String> result = phoneBook.printAllNames();
+        assertTrue(result.isEmpty());
+    }
+    
+    @Test
+    public void testPrintAllNamesSingle() {
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Alice", "123-456-789");
+        Set<String> result = phoneBook.printAllNames();
+        assertEquals(1, result.size());
+        assertTrue(result.contains("Alice"));
+    }
+    
+    @Test
+    public void testPrintAllNamesMultipleSorted() {
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Charlie", "111-111-111");
+        phoneBook.add("Alice", "222-222-222");
+        phoneBook.add("Bob", "333-333-333");
+        
+        Set<String> result = phoneBook.printAllNames();
+        assertEquals(3, result.size());
+        
+        String[] expected = {"Alice", "Bob", "Charlie"};
+        String[] actual = result.toArray(new String[0]);
+        assertArrayEquals(expected, actual);
+    }
+    
+    @Test
+    public void testPrintAllNamesAfterDuplicate() {
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Alice", "111-111-111");
+        phoneBook.add("Bob", "222-222-222");
+        phoneBook.add("Alice", "333-333-333");
+        
+        Set<String> result = phoneBook.printAllNames();
+        assertEquals(2, result.size());
     }
 }

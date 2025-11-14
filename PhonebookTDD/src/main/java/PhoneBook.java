@@ -1,5 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class PhoneBook {
     private Map<String, String> nameToNumber;
@@ -26,5 +28,9 @@ public class PhoneBook {
     
     public String findByName(String name) {
         return nameToNumber.get(name);
+    }
+    
+    public Set<String> printAllNames() {
+        return new TreeSet<>(); // Заглушка
     }
 }
