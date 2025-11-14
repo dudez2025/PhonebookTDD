@@ -2,7 +2,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PhoneBookTest {
-    // Существующие тесты для add...
+    // Существующие тесты для add и findByNumber...
     @Test
     public void testAddFirstContact() {
         PhoneBook phoneBook = new PhoneBook();
@@ -26,7 +26,6 @@ public class PhoneBookTest {
         assertEquals(1, result);
     }
     
-    // Новые тесты для findByNumber
     @Test
     public void testFindByNumberExisting() {
         PhoneBook phoneBook = new PhoneBook();
@@ -47,6 +46,30 @@ public class PhoneBookTest {
     public void testFindByNumberEmptyBook() {
         PhoneBook phoneBook = new PhoneBook();
         String result = phoneBook.findByNumber("123-456-789");
+        assertNull(result);
+    }
+    
+    // Новые тесты для findByName
+    @Test
+    public void testFindByNameExisting() {
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Alice", "123-456-789");
+        String result = phoneBook.findByName("Alice");
+        assertEquals("123-456-789", result);
+    }
+    
+    @Test
+    public void testFindByNameNonExisting() {
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Alice", "123-456-789");
+        String result = phoneBook.findByName("Bob");
+        assertNull(result);
+    }
+    
+    @Test
+    public void testFindByNameEmptyBook() {
+        PhoneBook phoneBook = new PhoneBook();
+        String result = phoneBook.findByName("Alice");
         assertNull(result);
     }
 }
